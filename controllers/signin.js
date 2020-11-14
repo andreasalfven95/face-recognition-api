@@ -1,7 +1,7 @@
 const handleSignin = (req, res, db, bcrypt) => {
     const { email, password } = req.body;
     if (!email || !password) {
-        return res.status(400).json('incorrect for submission')
+        return res.status(401).json('incorrect for submission')
     }
     db.select('email', 'hash').from('login')
         .where('email', '=', email)
@@ -13,9 +13,9 @@ const handleSignin = (req, res, db, bcrypt) => {
                     .then(user => {
                         res.json(user[0])
                     })
-                    .catch(err => res.status(400).json('unable to get user'))
+                    .catch(err => res.status(401).json('unable to get user'))
             } else {
-                res.status(401).json('wrong cridentials')
+                res.status(401).json('Wrong cridentials')
             }
         })
         .catch(err => res.status(401).json('wrong cridentials'))

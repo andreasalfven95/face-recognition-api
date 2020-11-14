@@ -13,6 +13,7 @@ const handleApiCall = (req, res) => {
         .then(data => {
             res.json(data);
         })
+        //THIS IS ABLE TO LEAVE A MESSAGE IN .catch ON FRONTEND
         .catch(err => res.status(400).json('unable to work with API'))
 }
 
